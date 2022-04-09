@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <TabuleiroCartas/>
   </div>
 </template>

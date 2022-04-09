@@ -2,7 +2,7 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <i>?</i>
             </div>
             <div class="flip-card-back">
                 <h1>John Doe</h1>
@@ -29,12 +29,12 @@ export default {
 
 /* This container is needed to position the front and back side */
 .flip-card-inner {
-     position: relative;
-     width: 100%;
-     height: 100%;
-     text-align: center;
-     transition: transform 0.8s;
-     transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
@@ -44,15 +44,18 @@ export default {
 
 /* Position the front and back side */
 .flip-card-front, .flip-card-back {
-     position: absolute;
-     width: 100%;
-     height: 100%;
-     -webkit-backface-visibility: hidden; /* Safari */
-     backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
 }
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--cor-bg-principal);
     color: rgb(254, 212, 62);
     border: 1px solid var(--cor-texto);
