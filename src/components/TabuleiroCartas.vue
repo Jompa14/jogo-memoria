@@ -1,5 +1,9 @@
 <template lang="html">
-    <div class="flip-card">
+    <div
+        class="flip-card"
+        :class="{viraCarta: this.cartaParaCima}"
+        @click="doAFlip()"
+    >
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <i>?</i>
@@ -15,6 +19,16 @@
 
 <script>
 export default {
+    data: () => ({
+        cartaParaCima: false
+    }),
+
+    methods: {
+        doAFlip() {
+            this.cartaParaCima = !this.cartaParaCima;
+
+    },
+  }
 }
 </script>
 
@@ -38,7 +52,7 @@ export default {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+.viraCarta .flip-card-inner {
     transform: rotateY(180deg);
 }
 
