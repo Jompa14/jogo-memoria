@@ -1,87 +1,56 @@
 <template lang="html">
-    <div
-        class="flip-card"
-        :class="{viraCarta: this.cartaParaCima}"
-        @click="doAFlip()"
-    >
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <i>?</i>
-            </div>
-            <div class="flip-card-back">
-                <h1>John Doe</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
-            </div>
-        </div>
+    <div class="div-pai">
+        <!-- <div class="d-flex" style="width: 80%"> -->
+            <CadaCarta
+                v-for="(carta, index) in cartas"
+                :key="index"
+                :valorCarta="carta"
+                @fuiClicado="doAFlip"
+            />
+        <!-- </div> -->
     </div>
 </template>
 
 <script>
+import CadaCarta from './CadaCarta.vue'
 export default {
-    data: () => ({
-        cartaParaCima: false
-    }),
-
-    methods: {
-        doAFlip() {
-            this.cartaParaCima = !this.cartaParaCima;
-
+    components: {
+        CadaCarta,
     },
-  }
+    data: () => ({
+        cartas: [
+            {conteudo: 'A', praCima: false},
+            {conteudo: 'A', praCima: false},
+            {conteudo: 'B', praCima: false},
+            {conteudo: 'B', praCima: false},
+            {conteudo: 'C', praCima: false},
+            {conteudo: 'C', praCima: false},
+            {conteudo: 'D', praCima: false},
+            {conteudo: 'D', praCima: false},
+            {conteudo: 'E', praCima: false},
+            {conteudo: 'E', praCima: false},
+            {conteudo: 'F', praCima: false},
+            {conteudo: 'F', praCima: false},
+            {conteudo: 'G', praCima: false},
+            {conteudo: 'G', praCima: false},
+            {conteudo: 'H', praCima: false},
+            {conteudo: 'H', praCima: false},
+            {conteudo: 'I', praCima: false},
+            {conteudo: 'I', praCima: false},
+            {conteudo: 'J', praCima: false},
+            {conteudo: 'J', praCima: false},
+        ]
+    }),
+    methods: {
+        doAFlip(carta) {
+            console.log(arguments);
+            carta.praCima = !carta.praCima;
+            // this.$emit('fuiClicado');
+        },
+    }
 }
 </script>
 
 <style lang="css" scoped>
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-    .flip-card {
-    background-color: transparent;
-    width: 150px;
-    height: 200px;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
 
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.viraCarta .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--cor-bg-principal);
-    color: rgb(254, 212, 62);
-    border: 1px solid var(--cor-texto);
-    border-radius: 7px;
-}
-
-/* Style the back side */
-.flip-card-back {
-    background-color: var(--cor-bg-principal);
-    color: rgb(254, 212, 62);
-    transform: rotateY(180deg);
-    border: 1px solid var(--cor-texto);
-    border-radius: 7px;
-}
 </style>
