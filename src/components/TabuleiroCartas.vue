@@ -112,6 +112,17 @@ export default {
         height: 90vh;
         font-size: 50px;
     }
+    .nickname input {
+        background-color: transparent;
+        height: 50px;
+        font-size: 30px;
+        color: var(--cor-texto);
+        border-color: transparent;
+        border-bottom-color: var(--cor-texto);
+    }
+    .nickname input:focus {
+        outline: none;
+    }
     .painel {
         display: flex;
         justify-content: space-between;
