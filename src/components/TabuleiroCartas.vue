@@ -13,39 +13,36 @@
 
 <script>
 import CadaCarta from './CadaCarta.vue'
+
+const CARTAS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
 export default {
     components: {
         CadaCarta,
     },
+    created() {
+        CARTAS.forEach((item) => {
+            this.cartas.push({conteudo: item, praCima: false, match: false})
+            this.cartas.push({conteudo: item, praCima: false, match: false})
+        });
+        this.cartas.sort( () => .5 - Math.random() );
+    },
     data: () => ({
-        cartas: [
-            {conteudo: 'A', praCima: false},
-            {conteudo: 'A', praCima: false},
-            {conteudo: 'B', praCima: false},
-            {conteudo: 'B', praCima: false},
-            {conteudo: 'C', praCima: false},
-            {conteudo: 'C', praCima: false},
-            {conteudo: 'D', praCima: false},
-            {conteudo: 'D', praCima: false},
-            {conteudo: 'E', praCima: false},
-            {conteudo: 'E', praCima: false},
-            {conteudo: 'F', praCima: false},
-            {conteudo: 'F', praCima: false},
-            {conteudo: 'G', praCima: false},
-            {conteudo: 'G', praCima: false},
-            {conteudo: 'H', praCima: false},
-            {conteudo: 'H', praCima: false},
-            {conteudo: 'I', praCima: false},
-            {conteudo: 'I', praCima: false},
-            {conteudo: 'J', praCima: false},
-            {conteudo: 'J', praCima: false},
-        ]
+        cartas: [],
     }),
     methods: {
         doAFlip(carta) {
             console.log(arguments);
             carta.praCima = !carta.praCima;
-            // this.$emit('fuiClicado');
+            let cartasParaCima = this.cartas.filter(carta => carta.praCima)
+            if (cartasParaCima.length === 2) {
+                if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
+                    cartasParaCima[0].match = true
+                    cartasParaCima[1].match = true
+                }
+                cartasParaCima[0].praCima = false
+                cartasParaCima[1].praCima = false
+            }
         },
     }
 }

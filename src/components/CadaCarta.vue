@@ -1,7 +1,7 @@
 <template lang="html">
     <div
         class="flip-card"
-        :class="{viraCarta: this.valorCarta.praCima}"
+        :class="{viraCarta: this.valorCarta.praCima || this.valorCarta.match }"
         @click="doAFlip()"
     >
         <div class="flip-card-inner">
@@ -9,7 +9,7 @@
                 <i>?</i>
             </div>
             <div class="flip-card-front">
-                <p>{{valorCarta}}</p>
+                <p>{{valorCarta.conteudo}}</p>
             </div>
         </div>
     </div>
@@ -25,9 +25,10 @@ export default {
 	},
     methods: {
         doAFlip() {
-            // this.cartaParaCima = !this.cartaParaCima;
-            this.$emit('fuiClicado', this.valorCarta);
-
+            if (!this.valorCarta.praCima && !this.valorCarta.match) {
+                // this.cartaParaCima = !this.cartaParaCima;
+                this.$emit('fuiClicado', this.valorCarta);
+            }
         },
     }
 }
@@ -37,7 +38,8 @@ export default {
     .flip-card {
         background-color: var(--cor-bg-principal);
         width: 150px;
-        height: 200px;
+        height: 150px;
+        margin: 10px;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
     }
 
@@ -66,7 +68,7 @@ export default {
     }
 
     /* Style the front side (fallback if image is missing) */
-    .flip-card-front {
+    .flip-card-back {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -77,7 +79,7 @@ export default {
     }
 
     /* Style the back side */
-    .flip-card-back {
+    .flip-card-front {
         background-color: var(--cor-bg-principal);
         color: var(--cor-texto);
         transform: rotateY(180deg);
