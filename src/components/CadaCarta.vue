@@ -57,7 +57,7 @@ export default {
         transform: rotateY(180deg);
     }
 
-    /* Position the front and back side */
+    /* regras comuns entre front e back da carta */
     .flip-card-front, .flip-card-back {
         display: flex;
         justify-content: center;
