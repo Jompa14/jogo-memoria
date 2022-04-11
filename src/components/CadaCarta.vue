@@ -37,8 +37,8 @@ export default {
 <style lang="css" scoped>
     .flip-card {
         background-color: var(--cor-bg-principal);
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         margin: 10px;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
     }
@@ -72,18 +72,25 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: var(--cor-bg-principal);
-        color: var(--cor-texto);
-        border: 1px solid var(--cor-texto);
+        font-weight: bolder;
+        font-size: 40px;
+        color: rgb(193, 72, 203);  /*rosa pink*/
+        background-color: var(--cor-bg-secundaria);
+        border: 2px solid var(--cor-texto);
         border-radius: 7px;
     }
 
     /* Style the back side */
     .flip-card-front {
-        background-color: var(--cor-bg-principal);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+        font-size: 40px;
         color: var(--cor-texto);
+        background-color: var(--cor-bg-secundaria);
         transform: rotateY(180deg);
-        border: 1px solid var(--cor-texto);
+        border: 2px solid var(--cor-texto);
         border-radius: 7px;
     }
 </style>

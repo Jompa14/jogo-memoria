@@ -1,13 +1,13 @@
 <template lang="html">
     <div class="div-pai">
-        <!-- <div class="d-flex" style="width: 80%"> -->
+        <div class="tabuleiro">
             <CadaCarta
                 v-for="(carta, index) in cartas"
                 :key="index"
                 :valorCarta="carta"
                 @fuiClicado="doAFlip"
             />
-        <!-- </div> -->
+        </div>
     </div>
 </template>
 
@@ -49,5 +49,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+    .tabuleiro {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 190px;
+    }
 
 </style>
