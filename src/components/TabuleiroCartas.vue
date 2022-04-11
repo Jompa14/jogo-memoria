@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="div-pai">
-        <div class="tabuleiro">
+        <div id="tabuleiro">
             <CadaCarta
                 v-for="(carta, index) in cartas"
                 :key="index"
@@ -40,23 +40,39 @@ export default {
             carta.praCima = !carta.praCima;
             let cartasParaCima = this.cartas.filter(carta => carta.praCima)
             if (cartasParaCima.length === 2) {
+                console.log('ifzao');
                 if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
+                    this.bloqueiaTabuleiro("none");
+                    console.log('if');
                     cartasParaCima[0].match = true;
                     cartasParaCima[1].match = true;
-                }
-                setTimeout(() => {
                     cartasParaCima[0].praCima = false;
                     cartasParaCima[1].praCima = false;
-                }, 1000);
-
+                    setTimeout(() => {
+                        this.bloqueiaTabuleiro("auto");
+                    }, 1000);
+                } else {
+                    this.bloqueiaTabuleiro("none");
+                    console.log('else');
+                    setTimeout(() => {
+                        cartasParaCima[0].praCima = false;
+                        cartasParaCima[1].praCima = false;
+                        this.bloqueiaTabuleiro("auto");
+                    }, 1000);
+                }
             }
         },
+        bloqueiaTabuleiro(valor) {
+            // valor "none" = bloqueia clique
+            // valor "auto" = clique habilitado
+            document.getElementById("tabuleiro").style.pointerEvents = valor;
+        }
     }
 }
 </script>
 
 <style lang="css" scoped>
-    .tabuleiro {
+    #tabuleiro {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
