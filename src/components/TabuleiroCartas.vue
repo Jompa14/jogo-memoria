@@ -18,7 +18,16 @@
             class="jogo"
         >
             <div class="painel">
-                <p>{{nick}}</p>
+                <div class="nickMaisBotao">
+                    <p>{{nick}}</p>
+                    <button
+                        type="button"
+                        name="button"
+                        @click="dialogTrocaNick = true, bloqueiaTabuleiro('none')"
+                    >
+                        Trocar nick
+                    </button>
+                </div>
                 <p>Rodadas: {{contador}}</p>
             </div>
             <div id="tabuleiro">
@@ -28,6 +37,23 @@
                     :valorCarta="carta"
                     @fuiClicado="viraAsCartinhas"
                 />
+            </div>
+        </div>
+        <!-- dialog troca nick -->
+        <div
+            v-if="dialogTrocaNick"
+            class="trocaNick"
+        >
+            <h3>Atenção!</h3>
+            <p>Trocar o nickname irá interromper o progresso do jogo atual!</p>
+            <div class="dialogBotoes">
+                <button
+                    type="button"
+                    @click="dialogTrocaNick = false, bloqueiaTabuleiro('auto')"
+                >
+                    Cancelar
+                </button>
+                <button type="button" @click="trocarNick">Trocar Nick</button>
             </div>
         </div>
     </div>
@@ -58,6 +84,7 @@ export default {
         cartas: [],
         contador: 0,
         nick: '',
+        dialogTrocaNick: false,
     }),
     mounted() {
         if (localStorage.nick) {
@@ -99,6 +126,10 @@ export default {
             // valor "none" = bloqueia clique
             // valor "auto" = clique habilitado
             document.getElementById("tabuleiro").style.pointerEvents = valor;
+        },
+        trocarNick() {
+            this.nick = '';
+            this.dialogTrocaNick = false;
         }
     }
 }
@@ -123,6 +154,16 @@ export default {
     .nickname input:focus {
         outline: none;
     }
+    .nickMaisBotao {
+        display: flex;
+    }
+    .nickMaisBotao button {
+        margin-left: 25px;
+        padding: 0px;
+        color: var(--cor-texto);
+        background-color: transparent;
+        border-color: transparent;
+    }
     .painel {
         display: flex;
         justify-content: space-between;
@@ -138,5 +179,17 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 190px;
+    }
+    .trocaNick {
+        position: fixed;
+        background-color: var(--cor-bg-secundaria);
+        top:30%;
+        left: 30%;
+        padding: 25px;
+        border: 2px solid var(--cor-texto);
+        border-radius: 7px;
+    }
+    .trocaNick button {
+        margin-right: 15px;
     }
 </style>
