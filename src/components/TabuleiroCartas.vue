@@ -37,16 +37,18 @@ export default {
     }),
     methods: {
         viraAsCartinhas(carta) {
-            console.log(arguments);
             carta.praCima = !carta.praCima;
             let cartasParaCima = this.cartas.filter(carta => carta.praCima)
             if (cartasParaCima.length === 2) {
                 if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
-                    cartasParaCima[0].match = true
-                    cartasParaCima[1].match = true
+                    cartasParaCima[0].match = true;
+                    cartasParaCima[1].match = true;
                 }
-                cartasParaCima[0].praCima = false
-                cartasParaCima[1].praCima = false
+                setTimeout(() => {
+                    cartasParaCima[0].praCima = false;
+                    cartasParaCima[1].praCima = false;
+                }, 1000);
+
             }
         },
     }
