@@ -5,7 +5,7 @@
                 v-for="(carta, index) in cartas"
                 :key="index"
                 :valorCarta="carta"
-                @fuiClicado="doAFlip"
+                @fuiClicado="viraAsCartinhas"
             />
         </div>
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 import CadaCarta from './CadaCarta.vue'
-
+// esta const ajudará a compor nosso array cartas no hook created
 const CARTAS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 export default {
@@ -21,17 +21,22 @@ export default {
         CadaCarta,
     },
     created() {
+        // aqui damos um loop na const CARTAS para preencher com um push
+        // o array cartas (do compo data).
         CARTAS.forEach((item) => {
             this.cartas.push({conteudo: item, praCima: false, match: false})
             this.cartas.push({conteudo: item, praCima: false, match: false})
         });
+        //  abaixo "embaralhamos" nosso array. Segundo discuções, este algoritimo
+        // não é VERDADEIRAMENTE randomico.
+        // Porém, o mantive no codigo por ser elegante e cumprir seu singelo propósito
         this.cartas.sort( () => .5 - Math.random() );
     },
     data: () => ({
         cartas: [],
     }),
     methods: {
-        doAFlip(carta) {
+        viraAsCartinhas(carta) {
             console.log(arguments);
             carta.praCima = !carta.praCima;
             let cartasParaCima = this.cartas.filter(carta => carta.praCima)
