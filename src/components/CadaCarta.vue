@@ -59,6 +59,15 @@ export default {
 
     /* Position the front and back side */
     .flip-card-front, .flip-card-back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+        font-size: 40px;
+        color: var(--cor-texto);
+        background-color: var(--cor-bg-secundaria);
+        border: 2px solid var(--cor-texto);
+        border-radius: 7px;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -68,28 +77,11 @@ export default {
 
     /* Style the back side */
     .flip-card-back {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bolder;
-        font-size: 40px;
         color: rgb(193, 72, 203);  /*rosa pink*/
-        background-color: var(--cor-bg-secundaria);
-        border: 2px solid var(--cor-texto);
-        border-radius: 7px;
     }
 
     /* Style the front side */
     .flip-card-front {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bolder;
-        font-size: 40px;
-        color: var(--cor-texto);
-        background-color: var(--cor-bg-secundaria);
         transform: rotateY(180deg);
-        border: 2px solid var(--cor-texto);
-        border-radius: 7px;
     }
 </style>

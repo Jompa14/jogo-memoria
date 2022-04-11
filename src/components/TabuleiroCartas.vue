@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="div-pai">
+    <div class="jogo">
         <div class="painel">
             <h1>jogo memoria</h1>
             <p>Rodadas: {{contador}}</p>
