@@ -66,7 +66,7 @@ export default {
         backface-visibility: hidden;
     }
 
-    /* Style the front side (fallback if image is missing) */
+    /* Style the back side */
     .flip-card-back {
         display: flex;
         justify-content: center;
@@ -79,7 +79,7 @@ export default {
         border-radius: 7px;
     }
 
-    /* Style the back side */
+    /* Style the front side */
     .flip-card-front {
         display: flex;
         justify-content: center;

@@ -1,5 +1,9 @@
 <template lang="html">
     <div class="div-pai">
+        <div class="painel">
+            <h1>jogo memoria</h1>
+            <p>Rodadas: {{contador}}</p>
+        </div>
         <div id="tabuleiro">
             <CadaCarta
                 v-for="(carta, index) in cartas"
@@ -34,12 +38,15 @@ export default {
     },
     data: () => ({
         cartas: [],
+        contador: 0,
     }),
     methods: {
         viraAsCartinhas(carta) {
             carta.praCima = !carta.praCima;
             let cartasParaCima = this.cartas.filter(carta => carta.praCima)
             if (cartasParaCima.length === 2) {
+                this.contador += 1;
+                console.log(this.contador);
                 if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
                     this.bloqueiaTabuleiro("none");
                     cartasParaCima[0].match = true;
@@ -75,5 +82,14 @@ export default {
         justify-content: space-between;
         margin: 0 190px;
     }
-
+    .painel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 200px;
+    }
+    .painel p {
+        font-size: 20px;
+        font-weight: bold;
+    }
 </style>
