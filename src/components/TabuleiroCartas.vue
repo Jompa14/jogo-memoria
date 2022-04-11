@@ -1,16 +1,34 @@
 <template lang="html">
-    <div class="jogo">
-        <div class="painel">
-            <h1>jogo memoria</h1>
-            <p>Rodadas: {{contador}}</p>
+    <div class="div-pai">
+        <div
+            v-if="nick === ''"
+            class="nickname"
+        >
+            <label for="nick">Nickname:</label>
+            <input
+                v-model.lazy="nick"
+                type="text"
+                name="nick"
+                value=""
+            >
         </div>
-        <div id="tabuleiro">
-            <CadaCarta
-                v-for="(carta, index) in cartas"
-                :key="index"
-                :valorCarta="carta"
-                @fuiClicado="viraAsCartinhas"
-            />
+
+        <div
+            v-else
+            class="jogo"
+        >
+            <div class="painel">
+                <p>{{nick}}</p>
+                <p>Rodadas: {{contador}}</p>
+            </div>
+            <div id="tabuleiro">
+                <CadaCarta
+                    v-for="(carta, index) in cartas"
+                    :key="index"
+                    :valorCarta="carta"
+                    @fuiClicado="viraAsCartinhas"
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -39,7 +57,18 @@ export default {
     data: () => ({
         cartas: [],
         contador: 0,
+        nick: '',
     }),
+    mounted() {
+        if (localStorage.nick) {
+            this.nick = localStorage.nick;
+        }
+    },
+    watch: {
+        nick(newNick) {
+            localStorage.nick = newNick;
+        }
+    },
     methods: {
         viraAsCartinhas(carta) {
             carta.praCima = !carta.praCima;
@@ -76,11 +105,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-    #tabuleiro {
+    .nickname {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 0 190px;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        font-size: 50px;
     }
     .painel {
         display: flex;
@@ -91,5 +121,11 @@ export default {
     .painel p {
         font-size: 20px;
         font-weight: bold;
+    }
+    #tabuleiro {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 190px;
     }
 </style>
