@@ -40,10 +40,8 @@ export default {
             carta.praCima = !carta.praCima;
             let cartasParaCima = this.cartas.filter(carta => carta.praCima)
             if (cartasParaCima.length === 2) {
-                console.log('ifzao');
                 if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
                     this.bloqueiaTabuleiro("none");
-                    console.log('if');
                     cartasParaCima[0].match = true;
                     cartasParaCima[1].match = true;
                     cartasParaCima[0].praCima = false;
@@ -53,7 +51,6 @@ export default {
                     }, 1000);
                 } else {
                     this.bloqueiaTabuleiro("none");
-                    console.log('else');
                     setTimeout(() => {
                         cartasParaCima[0].praCima = false;
                         cartasParaCima[1].praCima = false;

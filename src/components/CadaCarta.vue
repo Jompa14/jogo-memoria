@@ -26,7 +26,6 @@ export default {
     methods: {
         doAFlip() {
             if (!this.valorCarta.praCima && !this.valorCarta.match) {
-                // this.cartaParaCima = !this.cartaParaCima;
                 this.$emit('fuiClicado', this.valorCarta);
             }
         },
