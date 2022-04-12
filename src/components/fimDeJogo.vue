@@ -1,10 +1,7 @@
 <template lang="html">
     <div class="podium">
         <h2>Parabéns!</h2>
-        <p>{{ jogadorAtual.nick }}, você venceu o jogo em {{ jogadorAtual.rodadas }} rodadas</p>
-        v:{{vencedores}}
-        <br>
-        p:{{podium}}
+        <p>{{ jogadorAtual.nick }}, você venceu o jogo em {{ jogadorAtual.rodadas }} rodadas.</p>
         <h3>Podium:</h3>
         <div
             v-for="(vencedor, index) in podium"
@@ -31,29 +28,31 @@ export default {
             default: null,
         },
     },
-    created() {
-        this.criaPodium();
+    // created() {
+    //     this.criaPodium();
+    // },
+    computed: {
+        podium() {
+            return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
+        },
+        jogadorAtual() {
+            return this.vencedores.slice(-1)[0];
+        }
     },
-    data: () => ({
-        // recebe um array
-        podium: [],
-        //recebe objeto
-        jogadorAtual: null,
-    }),
     methods: {
         reset() {
             this.$emit('reiniciarJogo', this.valorCarta);
         },
-        criaPodium() {
-            let ordenados = this.vencedores;
-            console.log('ordenados', ordenados);
-            this.jogadorAtual = ordenados.slice(-1)[0];
-            console.log('Jogador', this.jogadorAtual);
-            // algoritmo que ordena array pelas propertys dos objetos:
-            // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
-            ordenados.sort((a,b) => a.rodadas - b.rodadas);
-            this.podium = ordenados.slice(0,3);
-        },
+        // criaPodium() {
+        //     let ordenados = this.vencedores;
+        //     console.log('ordenados', ordenados);
+        //     this.jogadorAtual = ordenados.slice(-1)[0];
+        //     console.log('Jogador', this.jogadorAtual);
+        //     // algoritmo que ordena array pelas propertys dos objetos:
+        //     // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+        //     ordenados.sort((a,b) => a.rodadas - b.rodadas);
+        //     this.podium = ordenados.slice(0,3);
+        // },
     }
 }
 </script>
