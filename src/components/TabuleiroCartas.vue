@@ -59,18 +59,22 @@
         <!-- dialog fim de jogo -->
         <fimDeJogo
             v-if="dialogFimDeJogo"
+            :vencedores="vencedores"
+            @reiniciarJogo="reiniciarJogo"
         />
     </div>
 </template>
 
 <script>
 import CadaCarta from './CadaCarta.vue'
+import fimDeJogo from './fimDeJogo.vue'
 // esta const ajudará a compor nosso array cartas no hook created
 const CARTAS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 export default {
     components: {
         CadaCarta,
+        fimDeJogo,
     },
     created() {
         // aqui damos um loop na const CARTAS para preencher com um push
@@ -105,10 +109,9 @@ export default {
     methods: {
         viraAsCartinhas(carta) {
             carta.praCima = !carta.praCima;
-            let cartasParaCima = this.cartas.filter(carta => carta.praCima)
+            let cartasParaCima = this.cartas.filter(carta => carta.praCima);
             if (cartasParaCima.length === 2) {
                 this.contador += 1;
-                console.log(this.contador);
                 if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
                     this.bloqueiaTabuleiro("none");
                     cartasParaCima[0].match = true;
@@ -116,8 +119,9 @@ export default {
                     cartasParaCima[0].praCima = false;
                     cartasParaCima[1].praCima = false;
                     setTimeout(() => {
+                        this.isGameOver();
                         this.bloqueiaTabuleiro("auto");
-                    }, 1000);
+                    }, 500);
                 } else {
                     this.bloqueiaTabuleiro("none");
                     setTimeout(() => {
@@ -128,6 +132,14 @@ export default {
                 }
             }
         },
+        isGameOver() {
+            let matchCartas = this.cartas.filter(carta => carta.match)
+                if (matchCartas.length === 20) {
+                    this.vencedores.push({nick: this.nick, rodadas: this.contador});
+                    this.dialogFimDeJogo = true;
+                    return
+                }
+        },
         bloqueiaTabuleiro(valor) {
             // valor "none" = bloqueia clique
             // valor "auto" = clique habilitado
@@ -136,6 +148,14 @@ export default {
         trocarNick() {
             this.nick = '';
             this.dialogTrocaNick = false;
+        },
+        reiniciarJogo() {
+            this.contador = 0;
+            this.dialogFimDeJogo = false;
+            this.cartas.map(carta => {
+                carta.praCima = false;
+                carta.match = false;
+            })
         }
     }
 }
