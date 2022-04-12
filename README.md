@@ -3,8 +3,8 @@
 ## O jogo
 
 A cada rodada, o usuário deverá escolher duas cartas que serão reveladas.
-Caso as cartas forem iguais permanecerão viradas para cima. O jogo acaba quando todas cartas estiverem viradas para cima. Ao final do jogo o usuário poderá ver
-um podium com os melhores desempenhos.
+Se as cartas forem iguais, permanecerão viradas para cima. O jogo acaba quando todas cartas estiverem viradas para cima. Ao final do jogo o usuário poderá ver
+um podium com os 3 melhores desempenhos.
 
 ## Prerequisites
 Caso não tenha a última versão do Node Package Maneger (NPM) ou o Vue.Js instalado na sua sua máquina:
@@ -21,7 +21,12 @@ npm install vue
 ```
 git clone https://github.com/Jompa14/jogo-memoria.git
 ```
-2. Instale os pacotes do NPM:
+2. Vá até a pasta jogo-memoria:
+
+```
+cd jogo-memoria/
+```
+3. Instale os pacotes do NPM:
 ```
 npm install
 ```
