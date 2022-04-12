@@ -156,6 +156,8 @@ export default {
                 carta.praCima = false;
                 carta.match = false;
             })
+            // embaralha cartas
+            this.cartas.sort( () => .5 - Math.random() );
         }
     }
 }
