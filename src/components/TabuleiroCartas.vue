@@ -10,6 +10,7 @@
                 type="text"
                 name="nick"
                 value=""
+                autofocus
             >
         </div>
 
@@ -19,7 +20,7 @@
         >
             <div class="painel">
                 <div class="nickMaisBotao">
-                    <p>{{nick}}</p>
+                    <p>Gamer: {{nick}}</p>
                     <button
                         type="button"
                         name="button"
