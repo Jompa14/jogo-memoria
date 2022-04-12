@@ -56,6 +56,10 @@
                 <button type="button" @click="trocarNick">Trocar Nick</button>
             </div>
         </div>
+        <!-- dialog fim de jogo -->
+        <fimDeJogo
+            v-if="dialogFimDeJogo"
+        />
     </div>
 </template>
 
@@ -85,6 +89,8 @@ export default {
         contador: 0,
         nick: '',
         dialogTrocaNick: false,
+        dialogFimDeJogo: false,
+        vencedores: [],
     }),
     mounted() {
         if (localStorage.nick) {
