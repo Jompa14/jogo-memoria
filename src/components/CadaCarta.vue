@@ -9,7 +9,10 @@
                 <i>?</i>
             </div>
             <div class="flip-card-front">
-                <img :src="valorCarta.conteudo">
+                <v-icon
+                    color="var(--cor-texto)"
+                    size="40"
+                > {{ valorCarta.conteudo }} </v-icon>
             </div>
         </div>
     </div>
@@ -64,7 +67,6 @@ export default {
         align-items: center;
         font-weight: bolder;
         font-size: 40px;
-        color: var(--cor-texto);
         background-color: var(--cor-bg-secundaria);
         border: 2px solid var(--cor-texto);
         border-radius: 7px;

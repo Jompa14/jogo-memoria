@@ -72,6 +72,7 @@ import {
     mdiSpaceInvaders,
     mdiZodiacSagittarius,
     mdiWeatherNight,
+    mdiSpider,
     mdiYinYang,
     mdiYoutubeGaming,
     mdiWizardHat,
@@ -82,7 +83,7 @@ import {
 import CadaCarta from './CadaCarta.vue'
 import fimDeJogo from './fimDeJogo.vue'
 // esta const ajudará a compor nosso array cartas no hook created
-const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiYinYang,
+const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
  mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
 
 export default {
@@ -188,6 +189,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+    .div-pai{ margin-top: 50px;}
     .nickname {
         display: flex;
         justify-content: center;
