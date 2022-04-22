@@ -9,7 +9,7 @@
                 <i>?</i>
             </div>
             <div class="flip-card-front">
-                <p>{{valorCarta.conteudo}}</p>
+                <img :src="valorCarta.conteudo">
             </div>
         </div>
     </div>

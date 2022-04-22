@@ -67,10 +67,23 @@
 </template>
 
 <script>
+import {
+    mdiAlienOutline,
+    mdiSpaceInvaders,
+    mdiZodiacSagittarius,
+    mdiWeatherNight,
+    mdiYinYang,
+    mdiYoutubeGaming,
+    mdiWizardHat,
+    mdiVirusOutline,
+    mdiSkullCrossbonesOutline,
+    mdiRadioactive,
+} from '@mdi/js'
 import CadaCarta from './CadaCarta.vue'
 import fimDeJogo from './fimDeJogo.vue'
 // esta const ajudará a compor nosso array cartas no hook created
-const CARTAS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiYinYang,
+ mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
 
 export default {
     components: {
@@ -90,6 +103,16 @@ export default {
         this.cartas.sort( () => .5 - Math.random() );
     },
     data: () => ({
+        mdiAlienOutline,
+        mdiSpaceInvaders,
+        mdiZodiacSagittarius,
+        mdiWeatherNight,
+        mdiYinYang,
+        mdiYoutubeGaming,
+        mdiWizardHat,
+        mdiVirusOutline,
+        mdiSkullCrossbonesOutline,
+        mdiRadioactive,
         cartas: [],
         contador: 0,
         nick: '',
