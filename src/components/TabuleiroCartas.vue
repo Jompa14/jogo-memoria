@@ -28,7 +28,7 @@
                         Trocar nick
                     </v-btn>
                 </div>
-                <p>Rodadas: {{contador}}</p>
+                <p>Rodadas: {{rodadas}}</p>
             </div>
             <div id="tabuleiro">
                 <CadaCarta
@@ -86,7 +86,7 @@
     } from '@mdi/js'
     import CadaCarta from './CadaCarta.vue'
     import fimDeJogo from './fimDeJogo.vue'
-    import mapState from 'vuex'
+    // import mapState from 'vuex'
     // esta const ajudará a compor nosso array cartas no hook created
     const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
      mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
@@ -107,6 +107,11 @@
             // não é VERDADEIRAMENTE randomico.
             // Porém, o mantive no codigo por ser elegante e cumprir seu singelo propósito
             this.cartas.sort( () => .5 - Math.random() );
+        },
+        computed: {
+            rodadas() {
+                return this.$store.state.getters.getRodadas
+            }
         },
         data: () => ({
             mdiAlienOutline,
