@@ -4,14 +4,15 @@ const state = () => ({
 })
 
 const getters = {
-    getRodadas: state => state.rodadas}
+    getRodadas: state => state.rodadas
+}
 
 const mutations = {
     addRodada: state => state.rodadas++
 }
 
 export default {
-    namespaced: true,
+    namespaced: false,
     state,
     getters,
     mutations,

@@ -1,8 +1,11 @@
-import { createStore } from 'vuex'
+import Vue from 'vue'
+import Vuex from "vuex";
 import rodadas from './modules/rodadas'
 
+Vue.use(Vuex);
+
 // Create a new store instance.
-export default createStore({
+export default new Vuex.Store({
     modules: {
         rodadas,
     }

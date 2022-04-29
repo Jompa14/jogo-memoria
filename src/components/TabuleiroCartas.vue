@@ -110,7 +110,7 @@
         },
         computed: {
             rodadas() {
-                return this.$store.state.getters.getRodadas
+                return this.$store.getters.getRodadas
             }
         },
         data: () => ({
