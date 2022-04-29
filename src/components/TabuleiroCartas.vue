@@ -20,14 +20,13 @@
         >
             <div class="painel">
                 <div class="nickMaisBotao">
-                    <p>Gamer: {{nick}}</p>
-                    <button
-                        type="button"
-                        name="button"
+                    <p class="mb-0">Gamer: {{nick}}</p>
+                    <v-btn
+                        text
                         @click="dialogTrocaNick = true, bloqueiaTabuleiro('none')"
                     >
                         Trocar nick
-                    </button>
+                    </v-btn>
                 </div>
                 <p>Rodadas: {{contador}}</p>
             </div>
@@ -48,18 +47,23 @@
             <h3>Atenção!</h3>
             <p>Trocar o nickname irá interromper o progresso do jogo atual!</p>
             <div class="dialogBotoes">
-                <button
-                    type="button"
+                <v-btn
+                    outlined
+                    color="var(--cor-texto)"
                     @click="dialogTrocaNick = false, bloqueiaTabuleiro('auto')"
                 >
                     Cancelar
-                </button>
-                <button type="button" @click="trocarNick">Trocar Nick</button>
+                </v-btn>
+                <v-btn
+                    color="var(--cor-texto)"
+                    @click="trocarNick"
+                >
+                    Trocar Nick
+                </v-btn>
             </div>
         </div>
         <!-- dialog fim de jogo -->
         <fimDeJogo
-            v-if="dialogFimDeJogo"
             :vencedores="vencedores"
             @reiniciarJogo="reiniciarJogo"
         />
@@ -210,6 +214,7 @@ export default {
     }
     .nickMaisBotao {
         display: flex;
+        align-items: center;
     }
     .nickMaisBotao button {
         margin-left: 25px;

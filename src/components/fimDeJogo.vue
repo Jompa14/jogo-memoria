@@ -27,10 +27,11 @@ export default {
             type: Array,
             default: null,
         },
+        // value: {
+        //     type: Boolean,
+        //     default: false,
+        // },
     },
-    // created() {
-    //     this.criaPodium();
-    // },
     computed: {
         podium() {
             return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
@@ -43,32 +44,23 @@ export default {
         reset() {
             this.$emit('reiniciarJogo', this.valorCarta);
         },
-        // criaPodium() {
-        //     let ordenados = this.vencedores;
-        //     console.log('ordenados', ordenados);
-        //     this.jogadorAtual = ordenados.slice(-1)[0];
-        //     console.log('Jogador', this.jogadorAtual);
-        //     // algoritmo que ordena array pelas propertys dos objetos:
-        //     // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
-        //     ordenados.sort((a,b) => a.rodadas - b.rodadas);
-        //     this.podium = ordenados.slice(0,3);
-        // },
     }
 }
 </script>
 
 <style lang="css" scoped>
     .podium {
-        position: fixed;
-        background-color: var(--cor-bg-secundaria);
-        top:30%;
-        left: 30%;
-        padding: 25px;
-        min-width: 600px;
+        position: absolute;
+        inset: 0px;
+        margin: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        max-width: 600px;
+        max-height: none;
+        padding: 25px;
+        background-color: var(--cor-bg-secundaria);
         border: 2px solid var(--cor-texto);
         border-radius: 7px;
     }
