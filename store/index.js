@@ -2,14 +2,14 @@ import { createStore } from 'vuex'
 
 // Create a new store instance.
 const store = createStore({
-  state () {
-    return {
-      count: 0
+    state () {
+        return {
+            rodadas: 0
+        }
+    },
+    mutations: {
+        addRodada (state) {
+            state.rodadas++
+        }
     }
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
 })

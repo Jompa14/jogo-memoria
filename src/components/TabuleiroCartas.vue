@@ -71,125 +71,126 @@
 </template>
 
 <script>
-import {
-    mdiAlienOutline,
-    mdiSpaceInvaders,
-    mdiZodiacSagittarius,
-    mdiWeatherNight,
-    mdiSpider,
-    mdiYinYang,
-    mdiYoutubeGaming,
-    mdiWizardHat,
-    mdiVirusOutline,
-    mdiSkullCrossbonesOutline,
-    mdiRadioactive,
-} from '@mdi/js'
-import CadaCarta from './CadaCarta.vue'
-import fimDeJogo from './fimDeJogo.vue'
-// esta const ajudará a compor nosso array cartas no hook created
-const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
- mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
-
-export default {
-    components: {
-        CadaCarta,
-        fimDeJogo,
-    },
-    created() {
-        // aqui damos um loop na const CARTAS para preencher com um push
-        // o array cartas (do compo data).
-        CARTAS.forEach((item) => {
-            this.cartas.push({conteudo: item, praCima: false, match: false})
-            this.cartas.push({conteudo: item, praCima: false, match: false})
-        });
-        //  abaixo "embaralhamos" nosso array. Segundo discuções, este algoritimo
-        // não é VERDADEIRAMENTE randomico.
-        // Porém, o mantive no codigo por ser elegante e cumprir seu singelo propósito
-        this.cartas.sort( () => .5 - Math.random() );
-    },
-    data: () => ({
+    import {
         mdiAlienOutline,
         mdiSpaceInvaders,
         mdiZodiacSagittarius,
         mdiWeatherNight,
+        mdiSpider,
         mdiYinYang,
         mdiYoutubeGaming,
         mdiWizardHat,
         mdiVirusOutline,
         mdiSkullCrossbonesOutline,
         mdiRadioactive,
-        cartas: [],
-        contador: 0,
-        nick: '',
-        dialogTrocaNick: false,
-        dialogFimDeJogo: false,
-        vencedores: [],
-    }),
-    mounted() {
-        if (localStorage.nick) {
-            this.nick = localStorage.nick;
-        }
-    },
-    watch: {
-        nick(newNick) {
-            localStorage.nick = newNick;
-        }
-    },
-    methods: {
-        viraAsCartinhas(carta) {
-            carta.praCima = !carta.praCima;
-            let cartasParaCima = this.cartas.filter(carta => carta.praCima);
-            if (cartasParaCima.length === 2) {
-                this.contador += 1;
-                if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
-                    this.bloqueiaTabuleiro("none");
-                    cartasParaCima[0].match = true;
-                    cartasParaCima[1].match = true;
-                    cartasParaCima[0].praCima = false;
-                    cartasParaCima[1].praCima = false;
-                    setTimeout(() => {
-                        this.isGameOver();
-                        this.bloqueiaTabuleiro("auto");
-                    }, 500);
-                } else {
-                    this.bloqueiaTabuleiro("none");
-                    setTimeout(() => {
-                        cartasParaCima[0].praCima = false;
-                        cartasParaCima[1].praCima = false;
-                        this.bloqueiaTabuleiro("auto");
-                    }, 1000);
-                }
+    } from '@mdi/js'
+    import CadaCarta from './CadaCarta.vue'
+    import fimDeJogo from './fimDeJogo.vue'
+    import mapState from 'vuex'
+    // esta const ajudará a compor nosso array cartas no hook created
+    const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
+     mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
+
+    export default {
+        components: {
+            CadaCarta,
+            fimDeJogo,
+        },
+        created() {
+            // aqui damos um loop na const CARTAS para preencher com um push
+            // o array cartas (do compo data).
+            CARTAS.forEach((item) => {
+                this.cartas.push({conteudo: item, praCima: false, match: false})
+                this.cartas.push({conteudo: item, praCima: false, match: false})
+            });
+            //  abaixo "embaralhamos" nosso array. Segundo discuções, este algoritimo
+            // não é VERDADEIRAMENTE randomico.
+            // Porém, o mantive no codigo por ser elegante e cumprir seu singelo propósito
+            this.cartas.sort( () => .5 - Math.random() );
+        },
+        data: () => ({
+            mdiAlienOutline,
+            mdiSpaceInvaders,
+            mdiZodiacSagittarius,
+            mdiWeatherNight,
+            mdiYinYang,
+            mdiYoutubeGaming,
+            mdiWizardHat,
+            mdiVirusOutline,
+            mdiSkullCrossbonesOutline,
+            mdiRadioactive,
+            cartas: [],
+            contador: 0,
+            nick: '',
+            dialogTrocaNick: false,
+            dialogFimDeJogo: false,
+            vencedores: [],
+        }),
+        mounted() {
+            if (localStorage.nick) {
+                this.nick = localStorage.nick;
             }
         },
-        isGameOver() {
-            let matchCartas = this.cartas.filter(carta => carta.match)
-                if (matchCartas.length === 20) {
-                    this.vencedores.push({nick: this.nick, rodadas: this.contador});
-                    this.dialogFimDeJogo = true;
-                    return
+        watch: {
+            nick(newNick) {
+                localStorage.nick = newNick;
+            }
+        },
+        methods: {
+            viraAsCartinhas(carta) {
+                carta.praCima = !carta.praCima;
+                let cartasParaCima = this.cartas.filter(carta => carta.praCima);
+                if (cartasParaCima.length === 2) {
+                    this.contador += 1;
+                    if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
+                        this.bloqueiaTabuleiro("none");
+                        cartasParaCima[0].match = true;
+                        cartasParaCima[1].match = true;
+                        cartasParaCima[0].praCima = false;
+                        cartasParaCima[1].praCima = false;
+                        setTimeout(() => {
+                            this.isGameOver();
+                            this.bloqueiaTabuleiro("auto");
+                        }, 500);
+                    } else {
+                        this.bloqueiaTabuleiro("none");
+                        setTimeout(() => {
+                            cartasParaCima[0].praCima = false;
+                            cartasParaCima[1].praCima = false;
+                            this.bloqueiaTabuleiro("auto");
+                        }, 1000);
+                    }
                 }
-        },
-        bloqueiaTabuleiro(valor) {
-            // valor "none" = bloqueia clique
-            // valor "auto" = clique habilitado
-            document.getElementById("tabuleiro").style.pointerEvents = valor;
-        },
-        trocarNick() {
-            this.nick = '';
-            this.dialogTrocaNick = false;
-        },
-        reiniciarJogo() {
-            this.contador = 0;
-            this.dialogFimDeJogo = false;
-            this.cartas.map(carta => {
-                carta.praCima = false;
-                carta.match = false;
-            })
-            // embaralha cartas
-            this.cartas.sort( () => .5 - Math.random() );
+            },
+            isGameOver() {
+                let matchCartas = this.cartas.filter(carta => carta.match)
+                    if (matchCartas.length === 20) {
+                        this.vencedores.push({nick: this.nick, rodadas: this.contador});
+                        this.dialogFimDeJogo = true;
+                        return
+                    }
+            },
+            bloqueiaTabuleiro(valor) {
+                // valor "none" = bloqueia clique
+                // valor "auto" = clique habilitado
+                document.getElementById("tabuleiro").style.pointerEvents = valor;
+            },
+            trocarNick() {
+                this.nick = '';
+                this.dialogTrocaNick = false;
+            },
+            reiniciarJogo() {
+                this.contador = 0;
+                this.dialogFimDeJogo = false;
+                this.cartas.map(carta => {
+                    carta.praCima = false;
+                    carta.match = false;
+                })
+                // embaralha cartas
+                this.cartas.sort( () => .5 - Math.random() );
+            }
         }
     }
-}
 </script>
 
 <style lang="css" scoped>
