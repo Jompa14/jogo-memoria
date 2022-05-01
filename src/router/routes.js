@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import TabuleiroCartas from "../views/TabuleiroCartas.vue"
 
 Vue.use(VueRouter);
 
@@ -7,16 +8,16 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: TabuleiroCartas
   },
   {
-    path: "/jokes",
-    name: "Jokes",
+    path: "/gameover",
+    name: "GameOver",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Jokes.vue")
+      import("../views/GameOver.vue")
   }
 ];
 

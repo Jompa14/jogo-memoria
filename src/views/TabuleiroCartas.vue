@@ -63,10 +63,10 @@
             </div>
         </div>
         <!-- dialog fim de jogo -->
-        <fimDeJogo
+        <!-- <fimDeJogo
             :vencedores="vencedores"
             @reiniciarJogo="reiniciarJogo"
-        />
+        /> -->
     </div>
 </template>
 

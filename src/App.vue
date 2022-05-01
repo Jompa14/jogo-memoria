@@ -1,22 +1,23 @@
 <template>
     <div id="app">
         <div class="container">
-            <TabuleiroCartas/>
-            <GameOver/>
+            <router-view/>
+            <!-- <TabuleiroCartas/>
+            <GameOver/> -->
         </div>
     </div>
 </template>
 
 <script>
-import TabuleiroCartas from './views/TabuleiroCartas.vue'
-import GameOver from './views/GameOver.vue'
+// import TabuleiroCartas from './views/TabuleiroCartas.vue'
+// import GameOver from './views/GameOver.vue'
 
 export default {
     name: 'App',
-    components: {
-        TabuleiroCartas,
-        GameOver,
-    }
+    // components: {
+    //     TabuleiroCartas,
+    //     GameOver,
+    // }
 }
 </script>
 
