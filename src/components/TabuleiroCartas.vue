@@ -86,6 +86,7 @@
     } from '@mdi/js'
     import CadaCarta from './CadaCarta.vue'
     import fimDeJogo from './fimDeJogo.vue'
+    import { mapMutations, mapGetters } from 'vuex'
     // import mapState from 'vuex'
     // esta const ajudará a compor nosso array cartas no hook created
     const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
@@ -109,9 +110,9 @@
             this.cartas.sort( () => .5 - Math.random() );
         },
         computed: {
-            rodadas() {
-                return this.$store.getters.getRodadas
-            }
+            ...mapGetters({
+                rodadas: "getRodadas"
+            })
         },
         data: () => ({
             mdiAlienOutline,
@@ -125,7 +126,6 @@
             mdiSkullCrossbonesOutline,
             mdiRadioactive,
             cartas: [],
-            contador: 0,
             nick: '',
             dialogTrocaNick: false,
             dialogFimDeJogo: false,
@@ -142,11 +142,15 @@
             }
         },
         methods: {
+            ...mapMutations({
+                addRodada: "addRodada",
+                resetRodadas: "resetRodadas"
+            }),
             viraAsCartinhas(carta) {
                 carta.praCima = !carta.praCima;
                 let cartasParaCima = this.cartas.filter(carta => carta.praCima);
                 if (cartasParaCima.length === 2) {
-                    this.contador += 1;
+                    this.addRodada();
                     if (cartasParaCima[0].conteudo === cartasParaCima[1].conteudo) {
                         this.bloqueiaTabuleiro("none");
                         cartasParaCima[0].match = true;
@@ -170,7 +174,7 @@
             isGameOver() {
                 let matchCartas = this.cartas.filter(carta => carta.match)
                     if (matchCartas.length === 20) {
-                        this.vencedores.push({nick: this.nick, rodadas: this.contador});
+                        this.vencedores.push({nick: this.nick, rodadas: this.rodadas});
                         this.dialogFimDeJogo = true;
                         return
                     }
@@ -185,7 +189,7 @@
                 this.dialogTrocaNick = false;
             },
             reiniciarJogo() {
-                this.contador = 0;
+                this.resetRodadas();
                 this.dialogFimDeJogo = false;
                 this.cartas.map(carta => {
                     carta.praCima = false;

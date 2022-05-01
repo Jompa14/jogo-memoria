@@ -8,7 +8,8 @@ const getters = {
 }
 
 const mutations = {
-    addRodada: state => state.rodadas++
+    addRodada: state => state.rodadas++,
+    resetRodadas: state => state.rodadas = 0
 }
 
 export default {
