@@ -2,17 +2,20 @@
     <div id="app">
         <div class="container">
             <TabuleiroCartas/>
+            <GameOver/>
         </div>
     </div>
 </template>
 
 <script>
-import TabuleiroCartas from './components/TabuleiroCartas.vue'
+import TabuleiroCartas from './views/TabuleiroCartas.vue'
+import GameOver from './views/GameOver.vue'
 
 export default {
     name: 'App',
     components: {
         TabuleiroCartas,
+        GameOver,
     }
 }
 </script>

@@ -84,9 +84,8 @@
         mdiSkullCrossbonesOutline,
         mdiRadioactive,
     } from '@mdi/js'
-    import CadaCarta from './CadaCarta.vue'
+    import CadaCarta from '../components/CadaCarta.vue'
     import { mapMutations, mapGetters } from 'vuex'
-    // import mapState from 'vuex'
     // esta const ajudará a compor nosso array cartas no hook created
     const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
      mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
@@ -94,7 +93,6 @@
     export default {
         components: {
             CadaCarta,
-            fimDeJogo,
         },
         created() {
             // aqui damos um loop na const CARTAS para preencher com um push
