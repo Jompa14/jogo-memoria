@@ -85,7 +85,6 @@
         mdiRadioactive,
     } from '@mdi/js'
     import CadaCarta from './CadaCarta.vue'
-    import fimDeJogo from './fimDeJogo.vue'
     import { mapMutations, mapGetters } from 'vuex'
     // import mapState from 'vuex'
     // esta const ajudará a compor nosso array cartas no hook created
