@@ -6,13 +6,13 @@
             <div class="painel">
                 <div class="nickMaisBotao">
                     <p class="mb-0">Gamer: {{nick}}</p>
-                    <v-btn
+                    <div
                         v-if="!$vuetify.breakpoint.xs"
-                        text
+                        class="btnTrocaNick"
                         @click="$router.push('/NickName')"
                     >
                         Trocar nick
-                    </v-btn>
+                    </div>
                 </div>
                 <p>Rodadas: {{rodadas}}</p>
             </div>
@@ -173,16 +173,8 @@
             margin: 0 10px;
         }
     }
-    .trocaNick {
-        position: fixed;
-        background-color: var(--cor-bg-secundaria);
-        top:30%;
-        left: 30%;
-        padding: 25px;
-        border: 2px solid var(--cor-texto);
-        border-radius: 7px;
-    }
-    .trocaNick button {
-        margin-right: 15px;
+    .btnTrocaNick {
+        margin-left: 40px;
+        cursor: pointer;
     }
 </style>
