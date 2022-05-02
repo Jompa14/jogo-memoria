@@ -1,30 +1,34 @@
 <template lang="html">
     <div class="podium">
         <h2>Parabéns!</h2>
-        <p>, você venceu o jogo em  rodadas.</p>
+        <p>{{ nick }}, você venceu o jogo em {{ rodadas }} rodadas.</p>
         <h3>Podium:</h3>
-        <!-- <div
+        <div
             v-for="(vencedor, index) in podium"
             :key="index"
-            class=""
         >
             <p>{{index + 1}}° - {{ vencedor.nick }}: {{ vencedor.rodadas }} rodadas</p>
-        </div> -->
-        <button
-            type="button"
-            name="button"
+        </div>
+        <v-btn
+            outlined
+            color="var(--col-texto)"
             @click="reiniciarJogo"
         >
             Jogar novamente
-        </button>
+        </v-btn>
     </div>
 </template>
 
 <script>
-    import { mapMutations } from 'vuex'
+    import { mapMutations, mapGetters } from 'vuex'
 
     export default {
         computed: {
+            ...mapGetters({
+                nick: "getNick",
+                rodadas: "getRodadas",
+                vencedores: "getVencedores",
+            }),
             podium() {
                 return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
             },
@@ -33,9 +37,6 @@
             ...mapMutations({
                 resetRodadas: "resetRodadas"
             }),
-            reset() {
-                this.$emit('reiniciarJogo', this.valorCarta);
-            },
             reiniciarJogo() {
                 this.resetRodadas();
                 this.$router.push('/')
@@ -59,5 +60,14 @@
         background-color: var(--cor-bg-secundaria);
         border: 2px solid var(--cor-texto);
         border-radius: 7px;
+    }
+    h3 {
+        margin: 40px 0 20px 0;
+    }
+    p {
+        margin: 10px 0
+    }
+    .v-btn {
+        margin-top: 20px;
     }
 </style>

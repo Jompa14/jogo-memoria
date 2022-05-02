@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from "vuex";
 import rodadas from './modules/rodadas'
 import jogador from './modules/jogador'
+import vencedores from './modules/vencedores'
 
 Vue.use(Vuex);
 
@@ -9,7 +10,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
         rodadas,
-        jogador
+        jogador,
+        vencedores,
     }
     // state () {
     //     return {

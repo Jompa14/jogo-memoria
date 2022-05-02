@@ -109,6 +109,7 @@
             mdiVirusOutline,
             mdiSkullCrossbonesOutline,
             mdiRadioactive,
+            dialogTrocaNick: false,
             cartas: [],
             vencedores: [],
         }),
@@ -120,8 +121,7 @@
         methods: {
             ...mapMutations({
                 addRodada: "addRodada",
-                resetRodadas: "resetRodadas",
-                alteraNick: "alteraNick"
+                addVencedor: "addVencedor"
             }),
             viraAsCartinhas(carta) {
                 carta.praCima = !carta.praCima;
@@ -151,7 +151,7 @@
             isGameOver() {
                 let matchCartas = this.cartas.filter(carta => carta.match)
                     if (matchCartas.length === 20) {
-                        this.vencedores.push({nick: this.nick, rodadas: this.$store.state.rodadas});
+                        this.addVencedor({nick: this.nick, rodadas: this.rodadas});
                         this.$router.push('/gameover')
                         return
                     }
