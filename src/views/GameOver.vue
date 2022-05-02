@@ -13,7 +13,7 @@
         <button
             type="button"
             name="button"
-            @click="reset"
+            @click="reiniciarJogo"
         >
             Jogar novamente
         </button>
@@ -21,19 +21,27 @@
 </template>
 
 <script>
+    import { mapMutations } from 'vuex'
 
-export default {
-    computed: {
-        // podium() {
-        //     return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
-        // },
-    },
-    methods: {
-        reset() {
-            this.$emit('reiniciarJogo', this.valorCarta);
+    export default {
+        computed: {
+            podium() {
+                return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
+            },
         },
+        methods: {
+            ...mapMutations({
+                resetRodadas: "resetRodadas"
+            }),
+            reset() {
+                this.$emit('reiniciarJogo', this.valorCarta);
+            },
+            reiniciarJogo() {
+                this.resetRodadas();
+                this.$router.push('/')
+            },
+        }
     }
-}
 </script>
 
 <style lang="css" scoped>

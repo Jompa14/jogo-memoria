@@ -110,18 +110,11 @@
             mdiSkullCrossbonesOutline,
             mdiRadioactive,
             cartas: [],
-            dialogTrocaNick: false,
-            dialogFimDeJogo: false,
             vencedores: [],
         }),
         mounted() {
             if (localStorage.nick) {
                 this.nick = localStorage.nick;
-            }
-        },
-        watch: {
-            nick(newNick) {
-                localStorage.nick = newNick;
             }
         },
         methods: {
@@ -159,7 +152,7 @@
                 let matchCartas = this.cartas.filter(carta => carta.match)
                     if (matchCartas.length === 20) {
                         this.vencedores.push({nick: this.nick, rodadas: this.$store.state.rodadas});
-                        this.dialogFimDeJogo = true;
+                        this.$router.push('/gameover')
                         return
                     }
             },
@@ -172,16 +165,6 @@
                 this.dialogTrocaNick = false;
                 this.$router.push('/NickName')
             },
-            reiniciarJogo() {
-                this.resetRodadas();
-                this.dialogFimDeJogo = false;
-                this.cartas.map(carta => {
-                    carta.praCima = false;
-                    carta.match = false;
-                })
-                // embaralha cartas
-                this.cartas.sort( () => .5 - Math.random() );
-            }
         }
     }
 </script>

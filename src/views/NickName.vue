@@ -22,13 +22,10 @@
             })
         },
         methods: {
-            // ...mapMutations({
-            //     alteraNick: "alteraNick",
-            // })
             alteraNick(evento) {
                 this.$store.commit('alteraNick', evento.target.value)
                 this.$router.push('/')
-            }
+            },
         },
     }
 </script>
