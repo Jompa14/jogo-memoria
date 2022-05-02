@@ -32,7 +32,7 @@ export default {
     }
     .container {
         max-width: 1000px;
-        min-width: 1000px;
+        /* min-width: 1000px; */
         margin: 0 auto;
     }
 </style>
