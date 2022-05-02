@@ -41,7 +41,7 @@
                 </v-btn>
                 <v-btn
                     color="var(--cor-texto)"
-                    @click="trocarNick"
+                    @click="trocaNick"
                 >
                     Trocar Nick
                 </v-btn>
@@ -80,6 +80,7 @@
             CadaCarta,
         },
         created() {
+            this.nick === null ? this.$router.push('/NickName') :
             // aqui damos um loop na const CARTAS para preencher com um push
             // o array cartas (do compo data).
             CARTAS.forEach((item) => {
@@ -157,7 +158,7 @@
             isGameOver() {
                 let matchCartas = this.cartas.filter(carta => carta.match)
                     if (matchCartas.length === 20) {
-                        this.vencedores.push({nick: this.$store.state.nick, rodadas: this.$store.state.rodadas});
+                        this.vencedores.push({nick: this.nick, rodadas: this.$store.state.rodadas});
                         this.dialogFimDeJogo = true;
                         return
                     }
@@ -167,9 +168,9 @@
                 // valor "auto" = clique habilitado
                 document.getElementById("tabuleiro").style.pointerEvents = valor;
             },
-            trocarNick() {
-                this.alteraNick('');
+            trocaNick() {
                 this.dialogTrocaNick = false;
+                this.$router.push('/NickName')
             },
             reiniciarJogo() {
                 this.resetRodadas();

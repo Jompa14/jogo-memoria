@@ -8,7 +8,7 @@ const getters = {
 }
 
 const mutations = {
-    alteraNick: (state, novoNick) => state.nick = novoNick,
+    alteraNick: (state, nick) => state.nick = nick,
 }
 
 export default {

@@ -8,14 +8,29 @@
             type="text"
             name="nick"
             :value="nick"
-            @input="alteraNick()"
+            @keyup.enter="alteraNick"
         >
     </div>
 </template>
 
 <script>
-export default {
-}
+    import { mapGetters } from 'vuex'
+    export default {
+        computed: {
+            ...mapGetters({
+                nick: 'getNick',
+            })
+        },
+        methods: {
+            // ...mapMutations({
+            //     alteraNick: "alteraNick",
+            // })
+            alteraNick(evento) {
+                this.$store.commit('alteraNick', evento.target.value)
+                this.$router.push('/')
+            }
+        },
+    }
 </script>
 
 <style lang="css" scoped>
