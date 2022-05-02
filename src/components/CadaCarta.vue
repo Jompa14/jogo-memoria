@@ -6,7 +6,10 @@
     >
         <div class="flip-card-inner">
             <div class="flip-card-back">
-                <i>?</i>
+                <v-icon
+                    color="rgb(193, 72, 203)"
+                    size="40"
+                > {{ mdiHelp }} </v-icon>
             </div>
             <div class="flip-card-front">
                 <v-icon
@@ -19,6 +22,9 @@
 </template>
 
 <script>
+import {
+    mdiHelp,
+} from '@mdi/js'
 export default {
     props: {
 		valorCarta: {
@@ -26,6 +32,9 @@ export default {
 			default: null,
 		},
 	},
+    data: () => ({
+        mdiHelp,
+    }),
     methods: {
         doAFlip() {
             if (!this.valorCarta.praCima && !this.valorCarta.match) {
@@ -75,11 +84,6 @@ export default {
         height: 100%;
         -webkit-backface-visibility: hidden; /* Safari */
         backface-visibility: hidden;
-    }
-
-    /* Style the back side */
-    .flip-card-back {
-        color: rgb(193, 72, 203);  /*rosa pink*/
     }
 
     /* Style the front side */
