@@ -1,21 +1,6 @@
 <template lang="html">
     <div class="div-pai">
         <div
-            v-if="nick === ''"
-            class="nickname"
-        >
-            <label for="nick">Nickname:</label>
-            <input
-                v-model.lazy="nick"
-                type="text"
-                name="nick"
-                value=""
-                autofocus
-            >
-        </div>
-
-        <div
-            v-else
             class="jogo"
         >
             <div class="painel">
@@ -108,7 +93,8 @@
         },
         computed: {
             ...mapGetters({
-                rodadas: "getRodadas"
+                rodadas: "getRodadas",
+                nick: "getNick",
             })
         },
         data: () => ({
@@ -123,7 +109,6 @@
             mdiSkullCrossbonesOutline,
             mdiRadioactive,
             cartas: [],
-            nick: '',
             dialogTrocaNick: false,
             dialogFimDeJogo: false,
             vencedores: [],
@@ -141,7 +126,8 @@
         methods: {
             ...mapMutations({
                 addRodada: "addRodada",
-                resetRodadas: "resetRodadas"
+                resetRodadas: "resetRodadas",
+                alteraNick: "alteraNick"
             }),
             viraAsCartinhas(carta) {
                 carta.praCima = !carta.praCima;
@@ -171,7 +157,7 @@
             isGameOver() {
                 let matchCartas = this.cartas.filter(carta => carta.match)
                     if (matchCartas.length === 20) {
-                        this.vencedores.push({nick: this.nick, rodadas: this.rodadas});
+                        this.vencedores.push({nick: this.$store.state.nick, rodadas: this.$store.state.rodadas});
                         this.dialogFimDeJogo = true;
                         return
                     }
@@ -182,7 +168,7 @@
                 document.getElementById("tabuleiro").style.pointerEvents = valor;
             },
             trocarNick() {
-                this.nick = '';
+                this.alteraNick('');
                 this.dialogTrocaNick = false;
             },
             reiniciarJogo() {
@@ -201,24 +187,6 @@
 
 <style lang="css" scoped>
     .div-pai{ margin-top: 50px;}
-    .nickname {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 90vh;
-        font-size: 50px;
-    }
-    .nickname input {
-        background-color: transparent;
-        height: 50px;
-        font-size: 30px;
-        color: var(--cor-texto);
-        border-color: transparent;
-        border-bottom-color: var(--cor-texto);
-    }
-    .nickname input:focus {
-        outline: none;
-    }
     .nickMaisBotao {
         display: flex;
         align-items: center;

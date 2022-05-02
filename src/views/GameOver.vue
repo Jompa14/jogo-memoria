@@ -1,15 +1,15 @@
 <template lang="html">
     <div class="podium">
         <h2>Parabéns!</h2>
-        <p>{{ jogadorAtual.nick }}, você venceu o jogo em {{ jogadorAtual.rodadas }} rodadas.</p>
+        <p>, você venceu o jogo em  rodadas.</p>
         <h3>Podium:</h3>
-        <div
+        <!-- <div
             v-for="(vencedor, index) in podium"
             :key="index"
             class=""
         >
             <p>{{index + 1}}° - {{ vencedor.nick }}: {{ vencedor.rodadas }} rodadas</p>
-        </div>
+        </div> -->
         <button
             type="button"
             name="button"
@@ -21,24 +21,12 @@
 </template>
 
 <script>
+
 export default {
-    props: {
-        vencedores: {
-            type: Array,
-            default: null,
-        },
-        // value: {
-        //     type: Boolean,
-        //     default: false,
-        // },
-    },
     computed: {
-        podium() {
-            return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
-        },
-        jogadorAtual() {
-            return this.vencedores.slice(-1)[0];
-        }
+        // podium() {
+        //     return [...this.vencedores].sort((a,b) => a.rodadas - b.rodadas).slice(0,3);
+        // },
     },
     methods: {
         reset() {
