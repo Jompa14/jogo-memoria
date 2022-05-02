@@ -45,13 +45,18 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
     .flip-card {
         background-color: var(--cor-bg-principal);
         width: 100px;
         height: 100px;
         margin: 10px;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
+        @media(max-width: 600px) {
+            margin: 8px;
+            height: 90px;
+            width: 95px;
+        }
     }
 
     /* This container is needed to position the front and back side */

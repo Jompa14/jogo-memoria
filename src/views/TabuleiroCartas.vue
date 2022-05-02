@@ -7,6 +7,7 @@
                 <div class="nickMaisBotao">
                     <p class="mb-0">Gamer: {{nick}}</p>
                     <v-btn
+                        v-if="!$vuetify.breakpoint.xs"
                         text
                         @click="$router.push('/NickName')"
                     >
@@ -136,7 +137,7 @@
     }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
     .div-pai{ margin-top: 50px;}
     .nickMaisBotao {
         display: flex;
@@ -154,6 +155,10 @@
         justify-content: space-between;
         align-items: center;
         margin: 0 200px;
+        @media(max-width: 900px) {
+            margin: 0 20px;
+            margin-bottom: 20px;
+        }
     }
     .painel p {
         font-size: 20px;
@@ -164,6 +169,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 190px;
+        @media(max-width: 900px) {
+            margin: 0 10px;
+        }
     }
     .trocaNick {
         position: fixed;
