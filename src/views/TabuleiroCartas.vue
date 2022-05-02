@@ -8,7 +8,7 @@
                     <p class="mb-0">Gamer: {{nick}}</p>
                     <v-btn
                         text
-                        @click="dialogTrocaNick = true, bloqueiaTabuleiro('none')"
+                        @click="$router.push('/NickName')"
                     >
                         Trocar nick
                     </v-btn>
@@ -24,34 +24,6 @@
                 />
             </div>
         </div>
-        <!-- dialog troca nick -->
-        <div
-            v-if="dialogTrocaNick"
-            class="trocaNick"
-        >
-            <h3>Atenção!</h3>
-            <p>Trocar o nickname irá interromper o progresso do jogo atual!</p>
-            <div class="dialogBotoes">
-                <v-btn
-                    outlined
-                    color="var(--cor-texto)"
-                    @click="dialogTrocaNick = false, bloqueiaTabuleiro('auto')"
-                >
-                    Cancelar
-                </v-btn>
-                <v-btn
-                    color="var(--cor-texto)"
-                    @click="trocaNick"
-                >
-                    Trocar Nick
-                </v-btn>
-            </div>
-        </div>
-        <!-- dialog fim de jogo -->
-        <!-- <fimDeJogo
-            :vencedores="vencedores"
-            @reiniciarJogo="reiniciarJogo"
-        /> -->
     </div>
 </template>
 
@@ -109,7 +81,6 @@
             mdiVirusOutline,
             mdiSkullCrossbonesOutline,
             mdiRadioactive,
-            dialogTrocaNick: false,
             cartas: [],
             vencedores: [],
         }),
@@ -160,10 +131,6 @@
                 // valor "none" = bloqueia clique
                 // valor "auto" = clique habilitado
                 document.getElementById("tabuleiro").style.pointerEvents = valor;
-            },
-            trocaNick() {
-                this.dialogTrocaNick = false;
-                this.$router.push('/NickName')
             },
         }
     }
