@@ -52,8 +52,13 @@
         components: {
             CadaCarta,
         },
+        beforeCreate() {
+            if (!localStorage.getItem('store')) {
+                this.$router.push('/NickName')
+            }
+        },
         created() {
-            this.nick === null ? this.$router.push('/NickName') :
+            this.alteraNick(JSON.parse(localStorage.getItem('store')))
             // aqui damos um loop na const CARTAS para preencher com um push
             // o array cartas (do compo data).
             CARTAS.forEach((item) => {
@@ -85,15 +90,11 @@
             cartas: [],
             vencedores: [],
         }),
-        mounted() {
-            if (localStorage.nick) {
-                this.nick = localStorage.nick;
-            }
-        },
         methods: {
             ...mapMutations({
                 addRodada: "addRodada",
-                addVencedor: "addVencedor"
+                addVencedor: "addVencedor",
+                alteraNick: "alteraNick",
             }),
             viraAsCartinhas(carta) {
                 carta.praCima = !carta.praCima;
