@@ -10,7 +10,7 @@
             :value="nick"
             @keyup.enter="alteraNick"
         />
-        <!-- teste github actions -->
+        <!-- teste github actions  -->
     </div>
 </template>
 
