@@ -58,7 +58,8 @@
             }
         },
         created() {
-            this.alteraNick(JSON.parse(localStorage.getItem('store')))
+            this.$store.commit('iniciaStore')
+            // this.alteraNick(JSON.parse(localStorage.getItem('store')))
             // aqui damos um loop na const CARTAS para preencher com um push
             // o array cartas (do compo data).
             CARTAS.forEach((item) => {
@@ -74,6 +75,7 @@
             ...mapGetters({
                 rodadas: "getRodadas",
                 nick: "getNick",
+                iniciaStore: 'iniciaStore',
             })
         },
         data: () => ({
