@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: deployon:
   push:
     branches:
@@ -29,38 +28,3 @@ name: deployon:
           git add -A
           git commit -m "🚀 Deploy id ${GITHUB_RUN_ID}"
           git push -f "https://github.com/${GITHUB_REPOSITORY}.git" main:gh-pages
-=======
-name: deploy
-
-  on:
-    push:
-      branches:
-        - main:
-    jobs:
-    deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-          with:
-            node-version: '12'
-        - name: setup git auth
-          env:
-            email: 'joao.buchholz@gmail.com'
-            username: 'Jompa14'
-            access_token: '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'
-          run: |
-            git config --global credential.helper store
-            echo "https://${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}:x-oauth-basic@github.com" > ~/.git-credentials
-            git config --global user.email $email
-            git config --global user.name $username
-        - name: deploy to gh-pages
-          run: |
-            npm i
-            NODE_ENV=production npm run build
-            cd dist
-            git init
-            git add -A
-            git commit -m "🚀 Deploy id ${GITHUB_RUN_ID}"
-            git push -f "https://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@github.com/Jompa14/jogo-memoria.git" main:gh-pages
->>>>>>> ed96ee0a19b787e420f7855034591cbd78e39a1e
