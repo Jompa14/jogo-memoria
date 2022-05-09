@@ -6,6 +6,8 @@ A cada rodada, o usuário deverá escolher duas cartas que serão reveladas.
 Se as cartas forem iguais, permanecerão viradas para cima. O jogo acaba quando todas cartas estiverem viradas para cima. Ao final do jogo o usuário poderá ver
 um podium com os 3 melhores desempenhos.
 
+Quer jogar? Aqui está a [demo](https://jompa14.github.io/jogo-memoria/) do jogo.
+
 ## Prerequisites
 Caso não tenha a última versão do Node Package Maneger (NPM) ou o Vue.Js instalado na sua sua máquina:
 ```
