@@ -45,8 +45,8 @@
     import CadaCarta from '../components/CadaCarta.vue'
     import { mapMutations, mapGetters } from 'vuex'
     // esta const ajudará a compor nosso array cartas no hook created
-    const CARTAS = [mdiAlienOutline, mdiSpaceInvaders, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
-     mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiRadioactive];
+    const CARTAS = [mdiAlienOutline, mdiRadioactive, mdiZodiacSagittarius, mdiWeatherNight, mdiSpider,
+    mdiYinYang, mdiWizardHat, mdiVirusOutline, mdiSkullCrossbonesOutline, mdiSpaceInvaders];
 
     export default {
         components: {
@@ -59,9 +59,12 @@
         },
         created() {
             this.$store.commit('iniciaStore')
-            // this.alteraNick(JSON.parse(localStorage.getItem('store')))
+            //reduz numero de cartas no mobile para melhor ux
+            if (this.$vuetify.breakpoint.xs) {
+                CARTAS.pop()
+            }
             // aqui damos um loop na const CARTAS para preencher com um push
-            // o array cartas (do compo data).
+            // o array cartas (do compo data)
             CARTAS.forEach((item) => {
                 this.cartas.push({conteudo: item, praCima: false, match: false})
                 this.cartas.push({conteudo: item, praCima: false, match: false})
