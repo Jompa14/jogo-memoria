@@ -25,6 +25,17 @@
                 />
             </div>
         </div>
+        <div class="github">
+            <p>
+                Visite o projeto no
+                <a
+                    href="https://github.com/Jompa14/jogo-memoria"
+                    target="_blank"
+                >
+                    GitHub
+                </a>.
+            </p>
+        </div>
     </div>
 </template>
 
@@ -182,5 +193,17 @@
     .btnTrocaNick {
         margin-left: 40px;
         cursor: pointer;
+    }
+    .github {
+        display: flex;
+        justify-content: flex-end;
+        margin: 15px 200px 0 200px;
+        @media(max-width: 900px) {
+            margin: 15px 20px 0 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
     }
 </style>
