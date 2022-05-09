@@ -2,29 +2,41 @@
     <div
         class="nickname"
     >
-        <label for="nick">Nickname:</label>
-        <v-text-field
-            autofocus
-            dark
+        <div>
+            <label for="nick">Nickname:</label>
+            <v-text-field
+                v-model="novoNick"
+                autofocus
+                dark
+                color="var(--cor-texto)"
+                @keyup.enter="alteraNick"
+            />
+        </div>
+        <v-btn
+            v-if="$vuetify.breakpoint.xs"
+            outlined
             color="var(--cor-texto)"
-            :value="nick"
-            @keyup.enter="alteraNick"
-        />
-        <!-- teste github actions  -->
+            @click="alteraNick"
+        >
+            Jogar
+        </v-btn>
     </div>
 </template>
 
 <script>
     import { mapGetters } from 'vuex'
     export default {
+        data: () => ({
+            novoNick: null,
+        }),
         computed: {
             ...mapGetters({
                 nick: 'getNick',
             })
         },
         methods: {
-            alteraNick(evento) {
-                this.$store.commit('alteraNick', evento.target.value)
+            alteraNick() {
+                this.$store.commit('alteraNick', this.novoNick)
                 this.$router.push('/')
             },
         },
@@ -34,12 +46,13 @@
 <style lang="scss" scoped>
     .nickname {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
         font-size: 50px;
         @media(max-width: 600px) {
-            font-size: 20px;
+            font-size: 30px;
         }
         .v-text-field {
             background-color: transparent;
@@ -51,6 +64,7 @@
                 height: 60px;
                 font-size: 17px;
                 max-width: 200px;
+                margin-left: 0;
             }
         }
     }
